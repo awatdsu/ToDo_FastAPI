@@ -1,23 +1,36 @@
 import sys
 import os
 
-from fastapi import APIRouter, Depends
-from app.users.rb import RBUser
+from fastapi import APIRouter, Depends, HTTPException, status
+from app.models import User
+from app.users.dependencies import get_current_user
+# from app.users.rb import RBUser
 from app.users.schemas import UUser
 from app.users.dao import UserDAO
+from app.tasks.router import router as task_router
+from app.error_schemas import ErrorResponse
 
 app_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(1, app_dir)
 
-router = APIRouter(prefix='/users', tags=['Работа с пользователями'])
+router = APIRouter(
+    prefix='/user', 
+    tags=['Работа с пользователями'],
+    dependencies=[Depends(get_current_user)]
+)
 
-@router.get("/", summary="Получить всех пользователей", response_model=list[UUser])
-async def get_all_users(request_body: RBUser = Depends()) -> list[UUser]:
-    return await UserDAO.find_all_users(**request_body.to_dict())
+router.include_router(
+    router = task_router
+)
 
-@router.get("/{username}", summary="Получить одного пользователя по username")
-async def get_user_by_username(username: str) -> UUser | dict:
+@router.get("/{username}", summary="Получить одного пользователя по username", responses={
+    200: {"model": UUser},
+    status.HTTP_403_FORBIDDEN: {"model" : ErrorResponse}
+})
+async def get_user_by_username(username: str, current_user : User = Depends(get_current_user)) -> UUser | dict:
     res = await UserDAO.find_one_or_none_by_username(username)
     if res is None:
-        return {'message':f'Пользователь {username} не найден!'}
+        raise HTTPException(status_code=403, detail="Forbidden")
+    if current_user.id != res.id:
+        raise HTTPException(status_code=403, detail="Forbidden")
     return res

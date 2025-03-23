@@ -10,7 +10,7 @@ load_dotenv()
 def get_token(request: Request):
     token = request.cookies.get('users_access_token')
     if not token:
-        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Token not found')
+        raise HTTPException(status_code=status.HTTP_401_UNAUTHORIZED, detail='Not Authorized')
     return token
 
 async def get_current_user(token: str = Depends(get_token)):

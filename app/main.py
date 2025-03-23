@@ -1,3 +1,13 @@
+"""
+/ - новостная страница GET
+/auth/login/ - логин POST
+/auth/register/ - регистрация POST
+/user/ - страница пользователя GET
+/user/ToDos/ - Список заметок GET
+/user/ToDos/createToDo/ - создание заметки POST
+/user/ToDos/{id}/deleteToDo/ - удаление заметки POST
+/user/ToDos/{id} - просмотр заметки GET
+"""
 import sys
 import os
 
@@ -9,7 +19,6 @@ from app.users.router import router as router_users
 from app.users.router_auth import router as router_authentification
 
 app = FastAPI()
-
 
 @app.get("/")
 def home_page():
