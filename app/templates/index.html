@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>News Feed</title>
+    <link rel="stylesheet" href="/static/styles/index.css">
+</head>
+<body>
+    <button id="authBtn" class="auth-btn"></button>
+
+    <div class="container">
+        <h1>Последние новости</h1>
+        
+        <div class="news-feed">
+            <!-- Пример новостной ленты -->
+            <article class="news-item" style="animation-delay: 0.1s">
+                <div class="news-date">24 марта 2024</div>
+                <h2 class="news-title">Запуск новой платформы</h2>
+                <p class="news-content">Здарова наху!</p>
+            </article>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+        const authBtn = document.getElementById('authBtn');
+        const response = await fetch('/api/v1/auth/me', {
+            method: 'GET',
+            headers: {
+                'Content-Type': 'application/json'
+            }
+        });
+        const res = await response.json()
+        // console.log(res)
+        // Обновление кнопки
+        if (res.user_data) {
+            authBtn.textContent = 'Профиль';
+            authBtn.onclick = () => window.location.href = `/pages/${res.user_data}/profile`;
+        } else {
+            authBtn.textContent = 'Войти / Регистрация';
+            authBtn.onclick = () => window.location.href = '/pages/auth/login';
+        }
+    });
+    </script>
+</body>
+</html>

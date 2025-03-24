@@ -14,8 +14,7 @@ app_dir = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 sys.path.insert(1, app_dir)
 
 router = APIRouter(
-    prefix='/user', 
-    tags=['Работа с пользователями'],
+    prefix='/user',
     dependencies=[Depends(get_current_user)]
 )
 

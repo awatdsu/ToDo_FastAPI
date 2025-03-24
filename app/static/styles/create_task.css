@@ -1,0 +1,104 @@
+/* Общие стили */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+    background: #f8f9fa;
+    color: #2d3436;
+}
+
+.container {
+    max-width: 600px;
+    margin: 4rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    position: relative;
+}
+
+/* Кнопка Назад */
+.back-btn {
+    position: absolute;
+    top: 1.5rem;
+    right: 2rem;
+    padding: 0.8rem 1.5rem;
+    background: #74b9ff;
+    border: none;
+    border-radius: 25px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    text-decoration: none;
+    font-size: 1rem;
+}
+
+.back-btn:hover {
+    background: #0984e3;
+    transform: translateY(-1px);
+}
+
+/* Форма создания */
+.create-form {
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+input, textarea {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input:focus, textarea:focus {
+    outline: none;
+    border-color: #74b9ff;
+}
+
+textarea {
+    height: 200px;
+    resize: vertical;
+}
+
+.submit-btn {
+    padding: 1rem;
+    background: #74b9ff;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1.1rem;
+}
+
+.submit-btn:hover {
+    background: #0984e3;
+}
+
+/* Адаптивность */
+@media (max-width: 768px) {
+    .container {
+        margin: 2rem 1rem;
+        padding: 1.5rem;
+    }
+
+    .back-btn {
+        top: 1rem;
+        right: 1rem;
+        padding: 0.6rem 1.2rem;
+    }
+}

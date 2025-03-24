@@ -49,3 +49,16 @@ class TaskDao():
             query = select(Task).filter_by(owner=task_owner, id=task_id)
             res = await session.execute(query)
             return res.scalar_one_or_none()
+        
+    @classmethod
+    async def complete_task(cls, task_owner: User, task_id: UUID):
+        async with session_maker() as session:
+            async with session.begin():
+                query = select(Task).filter_by(owner=task_owner, id=task_id)
+                res = await session.execute(query)
+                task_to_patch = res.scalar_one_or_none()
+                if not task_to_patch:
+                    return None
+                task_to_patch.is_completed = True
+                await session.commit()
+                return task_id

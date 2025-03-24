@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Profile</title>
+    <link rel="stylesheet" href="/static/styles/index.css">
+</head>
+<body>
+    <button class="to-news-btn" onclick="return_to_news()">Вернуться на главную</button>
+    <button class="create-btn" onclick="add_new_task()">Создать заметку</button>
+    <button class="logout-btn" onclick="logoutFunction()">Выйти</button>
+    <div class="container">
+        <h1>Заметки</h1>
+        
+        <div class="news-feed">
+            <!-- Пример новостной ленты -->
+             {% for task in tasks %}
+            <article class="news-item" style="animation-delay: 0.1s">
+                <div class="news-date">Время создания: {{ task.created_at }}</div>
+                <div class="news-date">Статус: 
+                    <span class="{% if task.is_completed %}status-done{% else %}status-pending{% endif %}">
+                    {{ "Выполнено" if task.is_completed else "Не выполнено" }}
+                    </span>
+                    <style>
+                        .status-done { color: #2ecc71; }
+                        .status-pending { color: #e67e22; }
+                    </style>
+                </div>
+                <div class="news-date">ID: {{ task.id }}</div>
+                <h2 class="news-title">{{ task.title }}</h2>
+                <p class="news-content">{{ task.description }}</p>
+                <button class="del-btn" data-task-id="{{ task.id }}" onclick="delete_task(event)"><img src="/static/images/trash.png" alt="Удалить" class="task-button-icon"></button>
+                <button class="check-btn" id="check_id" data-task-id="{{ task.id }}" onclick="complete_task(event)" style="{% if task.is_completed %}display: none;{% endif %}"><img src="/static/images/check_completed.png" alt="Выполнено" class="task-button-icon"></button>
+            </article>
+            {% endfor %}
+        </div>
+    </div>
+    <script src="/static/js/return_to_news.js"></script>
+    <script src="/static/js/logout.js"></script>
+    <script src="/static/js/add_new_task.js"></script>
+    <script src="/static/js/delete_task.js"></script>
+    <script src="/static/js/complete_task.js"></script>
+</body>
+</html>

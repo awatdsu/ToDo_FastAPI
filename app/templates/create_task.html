@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Новая заметка</title>
+    <link rel="stylesheet" href="/static/styles/create_task.css">
+</head>
+<body>
+    <div class="container">
+        <a href="." class="back-btn">Назад</a>
+        
+        <h1>Новая заметка</h1>
+        
+        <form class="create-form" id="create-form">
+            <div class="form-group">
+                <label>Название</label>
+                <input type="text" placeholder="Введите заголовок" id="title" name="title" required>
+            </div>
+
+            <div class="form-group">
+                <label>Описание</label>
+                <textarea placeholder="Начните писать..." id="description" name="description" required></textarea>
+            </div>
+
+            <button type="submit" class="submit-btn" onclick="addTaskFunction(event)">Создать заметку</button>
+        </form>
+    </div>
+    <script src="/static/js/add_new_task.js"></script>
+</body>
+</html>

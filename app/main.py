@@ -1,29 +1,28 @@
 """
-/ - новостная страница GET
-/auth/login/ - логин POST
-/auth/register/ - регистрация POST
-/user/ - страница пользователя GET
-/user/ToDos/ - Список заметок GET
-/user/ToDos/createToDo/ - создание заметки POST
-/user/ToDos/{id}/deleteToDo/ - удаление заметки POST
-/user/ToDos/{id} - просмотр заметки GET
+
 """
 import sys
 import os
+
+from fastapi.responses import RedirectResponse
 
 app_dir = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(1, app_dir)
 
 from fastapi import FastAPI
+from fastapi.staticfiles import StaticFiles
+
 from app.users.router import router as router_users
 from app.users.router_auth import router as router_authentification
+from app.pages.router import router as page_router
 
 app = FastAPI()
-
-@app.get("/")
+app.mount('/static', StaticFiles(directory='app/static'), 'static')
+@app.get("/", response_class=RedirectResponse)
 def home_page():
-    return {"message": "Привет, Хабр!"}
+    return "/pages"
 
 
-app.include_router(router_users)
-app.include_router(router_authentification)
+app.include_router(prefix="/api/v1", router=router_users, tags=["API v1"])
+app.include_router(prefix="/api/v1", router=router_authentification, tags=["API v1", "Аутентификация"])
+app.include_router(page_router)

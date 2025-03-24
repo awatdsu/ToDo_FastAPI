@@ -1,0 +1,91 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+body {
+    background: #f8f9fa;
+    color: #2d3436;
+}
+
+.container {
+    max-width: 400px;
+    margin: 6rem auto;
+    padding: 2rem;
+    background: white;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+h1 {
+    text-align: center;
+    font-weight: 300;
+    margin-bottom: 2rem;
+    font-size: 2rem;
+}
+
+/* Стили форм */
+.auth-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.form-group {
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+}
+
+input {
+    padding: 1rem;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    font-size: 1rem;
+    transition: border-color 0.3s ease;
+}
+
+input:focus {
+    outline: none;
+    border-color: #74b9ff;
+}
+
+button[type="submit"] {
+    padding: 1rem;
+    background: #74b9ff;
+    border: none;
+    border-radius: 8px;
+    color: white;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    font-size: 1rem;
+}
+
+button[type="submit"]:hover {
+    background: #0984e3;
+}
+
+.auth-links {
+    text-align: center;
+    margin-top: 1.5rem;
+}
+
+.auth-links a {
+    color: #74b9ff;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.auth-links a:hover {
+    color: #0984e3;
+    text-decoration: underline;
+}
+
+@media (max-width: 480px) {
+    .container {
+        margin: 3rem 1rem;
+        padding: 1.5rem;
+    }
+}

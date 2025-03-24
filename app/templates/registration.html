@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Авторизация</title>
+    <link rel="stylesheet" href="/static/styles/registration.css">
+</head>
+<body>
+    <!-- Страница регистрации -->
+    <div class="container" id="register">
+        <h1>Регистрация</h1>
+        <form class="auth-form" id="registration-form">
+            <div class="form-group">
+                <label>Юзернейм</label>
+                <input type="text" id="username" name="username" required>
+            </div>
+            <div class="form-group">
+                <label>Имя</label>
+                <input type="text" id="first_name" name="first_name" required>
+            </div>
+            <div class="form-group">
+                <label>Фамилия</label>
+                <input type="text" id="last_name" name="last_name" required>
+            </div>
+
+            <div class="form-group">
+                <label>Пароль</label>
+                <input type="password" id="password" name="password" required>
+            </div>
+
+            <button type="submit" id="reg-button" onclick="regFunction(event)">Зарегистрироваться</button>
+        </form>
+
+        <div class="auth-links">
+            <p>Уже есть аккаунт? <a href="/pages/auth/login">Войти</a></p>
+        </div>
+    </div>
+    <script src="/static/js/registration.js"></script>
+</body>
+</html>
