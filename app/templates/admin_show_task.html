@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin</title>
+    <link rel="stylesheet" href="/static/styles/admin.css">
+</head>
+<body>
+    <header class="admin-header">
+        <h1 class="admin-title">Админ-панель</h1>
+        <a href="/admin/{{user.id}}" class="edit-btn logout-btn" style="text-decoration: none;">Назад</a>
+    </header>
+
+    <div class="admin-container">
+        <div class="admin-section">
+            <h2 class="section-title">Заметка: {{task.id}} Владелец: {{user.id}} Статус: <span class="badge {% if task.is_completed %}badge-success{% else %}badge-warning{% endif %}">{{"Done" if task.is_completed else "Pending"}}</span></h2>
+            <button class="action-btn delete-btn">Удалить заметку</button>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID {{task.id}}</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>{{task.description}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+
+        <!-- <div class="admin-section">
+            <h2 class="section-title">Системные настройки</h2>
+            <form>
+                <div style="margin-bottom: 1.5rem;">
+                    <label style="display: block; margin-bottom: 0.5rem;">Лимит записей на странице</label>
+                    <input type="number" value="25" style="padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; width: 100%; max-width: 300px;">
+                </div>
+                <button type="submit" style="padding: 0.8rem 1.5rem; background: #74b9ff; color: white; border: none; border-radius: 8px; cursor: pointer;">Сохранить</button>
+            </form>
+        </div> -->
+    </div>
+</body>
+</html>

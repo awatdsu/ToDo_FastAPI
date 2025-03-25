@@ -9,7 +9,7 @@
 <body>
     <header class="admin-header">
         <h1 class="admin-title">Админ-панель</h1>
-        <button class="logout-btn">Выйти</button>
+        <a href="/pages" class="logout-btn" style="text-decoration: none;">Выйти</a>
     </header>
 
     <div class="admin-container">
@@ -19,12 +19,12 @@
                 <div class="stat-label">Пользователей</div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">{{tasks_count}}</div>
-                <div class="stat-label">Заметок</div>
+                <div class="stat-value"></div>
+                <div class="stat-label"></div>
             </div>
             <div class="stat-card">
-                <div class="stat-value">92%</div>
-                <div class="stat-label">Активность</div>
+                <div class="stat-value">{{tasks_count}}</div>
+                <div class="stat-label">Заметок</div>
             </div>
         </div>
 
@@ -48,8 +48,13 @@
                         <td>{{user.created_at}}</td>
                         <td><span class="badge {% if user.is_admin %}badge-success{% else %}badge-warning{% endif %}">{{"Admin" if user.is_admin else "User"}}</span></td>
                         <td>
-                            <button class="action-btn edit-btn">Редактировать</button>
-                            <button class="action-btn delete-btn">Удалить</button>
+                            <a href="/admin/{{user.id}}" class="action-btn edit-btn" style="text-decoration: none; font-size: 13px;">Просмотреть</a>
+                            <button 
+                                class="action-btn delete-btn"
+                                data-user-id="{{ user.id }}"
+                                data-user-name="{{ user.username }}">
+                                Удалить
+                            </button>
                         </td>
                     </tr>
                     {% endfor %}
@@ -57,16 +62,7 @@
             </table>
         </div>
 
-        <div class="admin-section">
-            <h2 class="section-title">Системные настройки</h2>
-            <form>
-                <div style="margin-bottom: 1.5rem;">
-                    <label style="display: block; margin-bottom: 0.5rem;">Лимит записей на странице</label>
-                    <input type="number" value="25" style="padding: 0.8rem; border: 1px solid #ddd; border-radius: 8px; width: 100%; max-width: 300px;">
-                </div>
-                <button type="submit" style="padding: 0.8rem 1.5rem; background: #74b9ff; color: white; border: none; border-radius: 8px; cursor: pointer;">Сохранить</button>
-            </form>
-        </div>
     </div>
+    <script src="/static/js/delete_user.js"></script>
 </body>
 </html>

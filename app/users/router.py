@@ -33,3 +33,16 @@ async def get_user_by_username(username: str, current_user : User = Depends(get_
     if current_user.id != res.id:
         raise HTTPException(status_code=403, detail="Forbidden")
     return res
+
+@router.delete("/{username}", summary="Удалить пользователя по юзернейму", responses={
+    200: {"model": UUser},
+    status.HTTP_403_FORBIDDEN: {"model" : ErrorResponse}
+})
+async def delete_user_by_username(username: str, current_user: User = Depends(get_current_user)) -> UUser | dict:
+    res = await UserDAO.find_one_or_none_by_username(username)
+    if res is None:
+        raise HTTPException(status_code=403, detail="Forbidden")
+    if not current_user.is_admin:
+        raise HTTPException(status_code=403, detail="Forbidden")
+    await UserDAO.delete_user(str(res.id))
+    return {"message": "User deleted successfully"}
