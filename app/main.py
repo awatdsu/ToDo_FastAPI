@@ -17,7 +17,7 @@ from app.users.router_auth import router as router_authentification
 from app.pages.router import router as page_router
 from app.admin_panel.router import router as admin_page_router
 
-app = FastAPI()
+app = FastAPI(docs_url="/docs/api")
 app.mount('/static', StaticFiles(directory='app/static'), 'static')
 @app.get("/", response_class=RedirectResponse)
 def home_page():

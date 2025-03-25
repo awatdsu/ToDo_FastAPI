@@ -5,10 +5,12 @@ delete_task - удаление заметки пользователя
 """
 from uuid import UUID
 from sqlalchemy import delete, select
+from app.dao_base import BaseDao
 from app.models import Task, User
 from app.database import session_maker
 
-class TaskDao():
+class TaskDao(BaseDao):
+    model = Task
 
     @classmethod
     async def find_all(cls, user_id: str | None = None):
