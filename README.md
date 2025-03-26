@@ -17,12 +17,21 @@
   - Просмотр всех задач в системе
 ## 🌟 Скриншоты интерфейса
 - Главная страница
-![Главная страница](https://github.com/awatdsu/ToDo_FastAPI/blob/main/assets/index.png)
+  
+- ![Главная страница](https://github.com/awatdsu/ToDo_FastAPI/blob/main/assets/index.png)
+
 - Страница входа
-![Страница входа](https://github.com/awatdsu/ToDo_FastAPI/blob/main/assets/login.png)
+
+- ![Страница входа](https://github.com/awatdsu/ToDo_FastAPI/blob/main/assets/login.png)
+
 - Страница профиля
-![Страница профиля](https://github.com/awatdsu/ToDo_FastAPI/blob/main/assets/profile.png)
+
+- ![Страница профиля](https://github.com/awatdsu/ToDo_FastAPI/blob/main/assets/profile.png)
+
 - Админ панель
-![Админ панель](https://github.com/awatdsu/ToDo_FastAPI/blob/main/assets/admin.png)
+
+- ![Админ панель](https://github.com/awatdsu/ToDo_FastAPI/blob/main/assets/admin.png)
+
 - Админ панель, профиль пользователя
-![Админ панель, профиль пользователя](https://github.com/awatdsu/ToDo_FastAPI/blob/main/assets/admin_profile.png)
+
+- ![Админ панель, профиль пользователя](https://github.com/awatdsu/ToDo_FastAPI/blob/main/assets/admin_profile.png)
