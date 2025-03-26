@@ -15,7 +15,15 @@
     <div class="admin-container">
         <div class="admin-section">
             <h2 class="section-title">Пользователь: {{ user.username }} ID: {{user.id}} Статус: <span class="badge {% if user.is_admin %}badge-success{% else %}badge-warning{% endif %}" style="font-size: 18px;">{{"Admin" if user.is_admin else "User"}}</span></h2>
-            <button class="action-btn delete-btn">Сделать администратором</button>
+            <button 
+                class="action-btn delete-btn make-adm-btn" 
+                style="{% if user.is_admin %}display: none;{% endif %}"
+                data-user-id="{{ user.id }}"
+                data-user-name="{{ user.username }}">
+                Сделать администратором
+            </button>
+            <button class="action-btn delete-btn make-usr-btn" style="{% if not user.is_admin %}display: none;{% endif %}" data-user-id="{{ user.id }}"
+            data-user-name="{{ user.username }}">Удалить права администратора</button>
             <table>
                 <thead>
                     <tr>
@@ -35,7 +43,6 @@
                         <td><span class="badge {% if task.is_completed %}badge-success{% else %}badge-warning{% endif %}">{{"Done" if task.is_completed else "Pending"}}</span></td>
                         <td>
                             <a href="/admin/{{user.id}}/{{task.id}}" class="action-btn edit-btn" style="text-decoration: none; font-size: 13px;">Просмотреть</a>
-                            <button class="action-btn delete-btn">Удалить</button>
                         </td>
                     </tr>
                     {% endfor %}
@@ -43,5 +50,6 @@
             </table>
         </div>
     </div>
+    <script src="/static/js/change_roles.js"></script>
 </body>
 </html>

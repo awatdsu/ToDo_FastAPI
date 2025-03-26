@@ -50,15 +50,32 @@ class UserDAO(BaseDao):
                 await session.delete(user_to_delete)
                 return
                 
+    # @classmethod
+    # async def give_admin(cls, user_id: str):
+    #     async with session_maker() as session:
+    #         query = select(cls.model).filter_by(id=UUID(user_id))
+    #         result = await session.execute(query)
+    #         result = result.scalar_one_or_none()
+    #         if not result:
+    #             return None
+    #         result.is_admin = True
+    #         await session.commit()
+    #         return result
+
     @classmethod
-    async def give_admin(cls, user_id: str):
+    async def patch_role(cls, user_id: str, user_status: dict):
         async with session_maker() as session:
             query = select(cls.model).filter_by(id=UUID(user_id))
             result = await session.execute(query)
             result = result.scalar_one_or_none()
             if not result:
                 return None
-            result.is_admin = True
+            for key,value in user_status.items():
+                if key == "is_admin" and value is True:
+                    result.is_admin = True
+                    result.is_user = False
+                else:
+                    result.is_admin = False
+                    result.is_user = True
             await session.commit()
             return result
-

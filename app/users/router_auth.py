@@ -17,7 +17,7 @@ async def register_user(user_data: SUserRegister) -> dict:
             detail="Пользователь уже существует"
         )
     user_dict = user_data.model_dump()
-    print(user_dict)
+    # print(user_dict)
     user_dict['password'] = get_password_hash(user_data.password)
     await UserDAO.add_user(**user_dict)
     return {'message': 'Вы успешно зарегистрированы!'}

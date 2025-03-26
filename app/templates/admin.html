@@ -43,7 +43,7 @@
                 <tbody>
                     {% for user in users %}
                     <tr>
-                        <td>{{user.id}}</td>
+                        <td style="font-size: 13px;">{{user.id}}</td>
                         <td>{{user.first_name}} {{user.last_name}}</td>
                         <td>{{user.created_at}}</td>
                         <td><span class="badge {% if user.is_admin %}badge-success{% else %}badge-warning{% endif %}">{{"Admin" if user.is_admin else "User"}}</span></td>

@@ -18,3 +18,7 @@ class SUserAuth(BaseModel):
     model_config = ConfigDict(from_attributes=True)
     username: str = Field(..., description="Юзернейм пользователя")
     password: str = Field(..., min_length=8, max_length=50, description="Пароль, от 8 до 50 символов")
+
+class UserRoleUpdate(BaseModel):
+    model_config = ConfigDict(from_attributes=True)
+    is_admin: bool
