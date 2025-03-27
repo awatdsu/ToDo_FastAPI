@@ -1,0 +1,37 @@
+networks:
+  app_dev:
+  data_base:
+
+services:
+  app:
+    build: .
+    env_file:
+      - .env
+    ports:
+      - "8000:8000"
+    depends_on:
+      - postgres
+    networks:
+      - app_dev
+      - data_base
+  
+  postgres:
+    image: postgres:17.4
+    env_file:
+      - .env
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - data_base
+  
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf
+      - ./app/static:/static
+    depends_on:
+      - app
+    networks:
+      - app_dev
