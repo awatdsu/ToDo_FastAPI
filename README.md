@@ -31,6 +31,15 @@
   - `PATCH /api/v1/user/{username}/ToDos/{task_id}` - Изменения статуса заметки на выполнено
   - `DELETE /api/v1/user/{username}/ToDos/{task_id}` - Удаление заметки
 
+
+```.env
+POSTGRES_USER=admin
+POSTGRES_PASSWORD=admin
+POSTGRES_DB=mydb
+DB_URL=postgresql+asyncpg://${POSTGRES_USER}:${POSTGRES_PASSWORD}@postgres:5432/${POSTGRES_DB}
+SECRET_KEY=some_secret_key
+ALGORITHM=some_alghorithm
+```
 ## 🌟 Скриншоты интерфейса
 - Главная страница
   
