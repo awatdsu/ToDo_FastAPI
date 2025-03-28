@@ -32,7 +32,7 @@
   - `DELETE /api/v1/user/{username}/ToDos/{task_id}` - Удаление заметки
 
 
-```
+```.env
 #.env example
 POSTGRES_USER=admin
 POSTGRES_PASSWORD=admin
